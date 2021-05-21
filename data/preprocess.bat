@@ -1,0 +1,2 @@
+cscript preprocess.wsf
+pause

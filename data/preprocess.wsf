@@ -1,0 +1,39 @@
+<job>
+<script language="VBS">
+
+rc = ProcessFile("data\data_from_Mersin.txt","data\data_from_Mersin_for_R.txt")
+
+WScript.Echo "done"
+WScript.Quit
+
+
+Function ProcessFile(filein,fileout)
+  sSep = vbTab
+
+  Dim nData(12)
+  WScript.Echo filein
+  
+  Set fso = WScript.CreateObject("Scripting.FileSystemObject")
+  Set f = fso.OpenTextFile(filein,1)
+  
+  Set fo = fso.CreateTextFile(fileout,True)
+  
+  do while not f.AtEndOfStream
+    s = f.ReadLine
+    if left(s,2) = "//" then
+      ' skip
+    else
+      fo.WriteLine s
+    end if
+  loop
+  
+  f.Close
+  fo.Close
+    
+  Set fso = Nothing
+  
+End Function
+
+
+</script>
+</job>
