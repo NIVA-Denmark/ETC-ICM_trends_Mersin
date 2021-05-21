@@ -11,37 +11,10 @@ library(patchwork)
 
 load("data/data_from_Mersin.Rda")
 
+source("get_station_positions.R")
+
 # get distinct sampling stations and add year / decade information
-dfstn <- df %>%
-  mutate(Year=year(Date)) %>%
-  mutate(DecadeFrom = 10*(round((-4.5+Year)/10))) %>%
-  mutate(Decade=paste0(DecadeFrom,"-",DecadeFrom+9)) 
-
-dfstn <- dfstn %>%
-  distinct(DecadeFrom,Decade,Station,St_ID,Lat,Lon)
-
-# add an id row - this is mainly done if we need to export to ArcGis and import again
-# matching by lat, lon can be problematic with data exported from ArcGIS
-dfstn$ID <- 1:nrow(dfstn)
-
-
-# convert to simple features (sf) spatial data, specifying the coordinate variables
-sf_stn <- dfstn %>% 
-  st_as_sf(coords=c("Lon", "Lat"))
-
-# specify that the the coordinates are Lat / Lon (WGS84) [EPSG:4326]
-sf_stn_geo = st_set_crs(sf_stn, 4326)
-st_is_longlat(sf_stn_geo)
-
-# transform the coordinates to Turkish Reference system 36 [EPSG:5256]
-
-sf_stn_TM36 <- st_transform(sf_stn_geo, crs = st_crs(5256))
-
-# convert the station sf spatial data back to a 'regular' data frame
-df_stn_TM36 <- sf_stn_TM36 %>%
-  mutate(x = unlist(map(sf_stn_TM36$geometry,1)),
-         y = unlist(map(sf_stn_TM36$geometry,2)))
-df_stn_TM36$geometry <- NULL
+df_stn_TM36 <- get_station_positions(df)
 
 
 # Mersin position (ca.)
