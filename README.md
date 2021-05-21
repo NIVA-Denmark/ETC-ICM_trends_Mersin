@@ -14,7 +14,7 @@ The file  `data_from_Mersin_for_R.txt` is read into an R data frame using [Mersi
 Two transects are defined for making the HEAT calculations: *Mersin* and *Erdemli*. The code for plotting these transects is in the file [Mersin_plot_transects.R](/Mersin_plot_transects.R)
 
 #### 1. Mersin Transect 
-The first transect starts at Mersin (TM36 x=381962 y=4075951). The transect is divided into 5km x km grid squares and extends southwards from the coast at Mersin 50 km out into open waters, giving 10 assessment units within the transect.
+The first transect starts at Mersin (TM36 x=381962 y=4075951). The transect is divided into 5 km x 5 km grid squares and extends southwards from the coast at Mersin 50 km out into open waters, giving 10 assessment units within the transect.
 
 ![Plot of Mersin transect](png/transect_Mersin.png)
 
