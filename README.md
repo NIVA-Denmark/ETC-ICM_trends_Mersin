@@ -23,3 +23,7 @@ The second transect starts at Erdemli. In ArcGIS, the *buffer* function is used 
 
 
 ![Plot of Erdemli transect](png/transect_Erdemli.png)
+
+#### HEAT Assessments
+
+The methods and results for the HEAT assessments are described in the [HEAT](HEAT.md) readme file
