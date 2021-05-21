@@ -13,13 +13,13 @@ The file  `data_from_Mersin_for_R.txt` is read into an R data frame using [Mersi
 ### Transects
 Two transects are defined for making the HEAT calculations: *Mersin* and *Erdemli*. The code for plotting these transects is in the file [Mersin_plot_transects.R](/Mersin_plot_transects.R)
 
-#### Mersin Transect 
+#### 1. Mersin Transect 
 The first transect starts at Mersin TM36 x=381962 y=4075951. The transect is divided into 5km x km grid squares and extends southwards from the coast at Mersin 50 km out into open waters, giving 10 assessment units within the transect.
 
 ![Plot of Mersin transect](png/transect_Mersin.png)
 
-#### Erdemli Transect 
+#### 2. Erdemli Transect 
 The second transect starts at Erdemli. In ArcGIS, the *buffer* function is used to divide the waters into bands of distance from the coast at 5 km intervals, up to 25 km, giving 5 bands in total, each 5 km wide. The start and end positions of the bands was chosen arbitrarily, intending only to enclose the areas with relatively high density of observations close to Erdemli.
 
 
-![Plot of Mersin transect](png/transect_Erdemli.png)
+![Plot of Erdemli transect](png/transect_Erdemli.png)

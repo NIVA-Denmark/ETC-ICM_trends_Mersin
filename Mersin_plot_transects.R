@@ -131,5 +131,5 @@ plots_aligned <- align_patches(p1, p2)
 p1<-plots_aligned[[1]]
 p2<-plots_aligned[[2]]
 
-ggsave("png/transect_Mersin.png",p1,dpi=300,units="cm",width=12,height=25)
-ggsave("png/transect_Erdemli.png",p2,dpi=300,units="cm",width=12,height=25)
+ggsave("png/transect_Mersin.png",p1,dpi=300,units="cm",width=25,height=15)
+ggsave("png/transect_Erdemli.png",p2,dpi=300,units="cm",width=25,height=15)
