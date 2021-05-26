@@ -51,7 +51,7 @@ For each profile at a particular position on a particular date, we take the maxi
 
 Now we have a single value of each parameter for each profile. We then collect all values of the parameter within the assessment unit from the relevant months (according to the table of target values) and calculate an average value for each combination of Year, Parameter and Assessment unit.
 
-The HEAT assessment is made by comparing the mean parameter value with the target values. The calculations are done using  [Mersin_HEAT.R](/Mersin_HEAT.R) . First, data from the cruises is matched to assessment units shown in the introduction [README](/README.md) then the HEAT calculations are dones and plots of the results made.
+The HEAT assessment is made by comparing the mean parameter value with the target values. The calculations are done using  [Mersin_HEAT.R](/Mersin_HEAT.R) . First, data from the cruises is matched to assessment units shown in the [Transects](#transects) section. Then the HEAT calculations are done and plots of the results made.
  
 ### HEAT Results
 The plots of HEAT classification by year in each assessment unit.
