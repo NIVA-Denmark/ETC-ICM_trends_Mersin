@@ -22,7 +22,7 @@ sf_stn_TM36 <- get_station_positions(df,as_sf=T)
 
 # xTM36 <- 381962
 # yTM36 <- 4075951
-shape <- st_read(dsn="gis",layer="erdemli_coast_buffer_5")
+shape <- st_read(dsn="gis",layer="erdemli_coast_transect2_5km_20km")
 
 grid_res <- 5000
 
@@ -33,6 +33,7 @@ df_stn_TM36_transect_Erdemli <- sf_stn_transect %>%
 df_stn_TM36_transect_Erdemli$geometry <- NULL
 
 df_stn_TM36_transect_Erdemli <- df_stn_TM36_transect_Erdemli %>%
+  mutate(distance=distance*1000) %>%
   mutate(DistRnd=distance-grid_res) %>%
   rename(Dist=distance)
 
