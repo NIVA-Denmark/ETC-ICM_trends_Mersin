@@ -56,5 +56,9 @@ The HEAT assessment is made by comparing the mean parameter value with the targe
 ### HEAT Results
 The plots of HEAT classification by year in each assessment unit.
 
-![HEAT results for Mersin transect](png/HEAT_transect_Mersin.png)
-![HEAT results for Erdemli transect](png/HEAT_transect_Erdemli.png)
+![HEAT classification results for Mersin transect](png/HEAT_transect_Mersin.png)
+
+![HEAT classification results for Erdemli transect](png/HEAT_transect_Erdemli.png)
+
+![HEAT timeseries results ](png/HEAT_timeseries.png)
+

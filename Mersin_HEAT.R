@@ -74,7 +74,7 @@ df_trans_Mersin <- df_trans_Mersin %>%
 list_trans <- list("Mersin"=df_trans_Mersin,"Erdemli"=df_trans_Erdemli)
 
 
-# ------------- do HEAT caclulations for each transect ---------------------
+# ------------- do HEAT calculations for each transect ---------------------
 for(i in 1:length(list_trans)){
   cat(paste0(i,": ",names(list_trans)[i],"\n"))
   df_trans <- list_trans[[i]]
@@ -101,6 +101,7 @@ for(i in 1:length(list_trans)){
   df_HEAT <- df_HEAT %>%
     mutate(Class = ifelse(ER>0.5,ifelse(ER>1,ifelse(ER>1.5,ifelse(ER>2,5,4),3),2),1))
   
+  # ///////////////////////////////////////////////////////////////////
   ClassNames <- c("High","Good","Mod","Poor","Bad")
   
   df_HEAT_plot <- df_HEAT %>%
@@ -127,10 +128,70 @@ for(i in 1:length(list_trans)){
   p
   
   assign(paste0("p",i),p)
+  
+  # ///////////////////////////////////////////////////////////////////
+  
+  dfYear <- df_HEAT %>% ungroup() %>% distinct(Year) 
+  dfDist <- df_HEAT %>% ungroup() %>% distinct(DistRnd)
+  dfYearDist <- merge(dfYear,dfDist)
+  
+  df_HEAT_plot <- dfYearDist %>%
+    left_join(df_HEAT,by=c("Year","DistRnd")) %>%
+    mutate(Distance=paste0(DistRnd*0.001," km"))
+  
+  dist_levels <- rev(dfDist$DistRnd)
+  dist_levels <- paste0(dist_levels/1000," km")
+  
+  df_HEAT_plot$Distance <- factor(df_HEAT_plot$Distance,levels=dist_levels)
+  
+  ER0<-0
+  ER05<-0.5
+  ER10<-1
+  ER15<-1.5
+  ER20<-2
+  ERmax<- c(5,6,7,8,9,10,15,20,30,40,50)
+  ERmax<- ERmax[ERmax>max(df_HEAT_plot$ER,na.rm=T)][1]
+  
+  alpha_bands <- 0.6 
+  p_ts <-ggplot(df_HEAT_plot) +
+    labs(subtitle=transect_name) +
+    ylab("Eutrophication Ratio [ER]") +
+    xlab("Year") +
+    scale_fill_manual(values=pal_class) +
+    facet_grid(Distance~.) + #,ncol=1
+    geom_ribbon(aes(ymin=ER0,ymax=ER05,x=Year),fill="#007eff",alpha=alpha_bands)+
+    geom_ribbon(aes(ymin=ER05,ymax=ER10,x=Year),fill="#00d600",alpha=alpha_bands)+
+    geom_ribbon(aes(ymin=ER10,ymax=ER15,x=Year),fill="#ffff00",alpha=alpha_bands)+
+    geom_ribbon(aes(ymin=ER15,ymax=ER20,x=Year),fill="#ff8c2b",alpha=alpha_bands)+
+    geom_ribbon(aes(ymin=ER20,ymax=ERmax,x=Year),fill="#ff0000",alpha=alpha_bands)+
+    geom_line(aes(x=Year,y=ER),size=1) +
+    geom_point(aes(x=Year,y=ER),size=1) +
+    theme_ipsum() +
+    theme(legend.position = "right",
+          strip.text = element_text(hjust = 0),
+          panel.spacing.y = unit(0.1,units="cm"),
+          #legend.justification = c(1,1),
+          legend.background=element_rect(fill="#FFFFFF",
+                                         size=0.5,
+                                         linetype="solid",
+                                         colour ="#AAAAAA"))
+  p_ts
+  assign(paste0("p",i,"_ts"),p_ts)
+  
+  
 }
+
+# ------------- save plots ---------------------
 
 plots_aligned <- align_patches(p1, p2)
 
 ggsave("png/HEAT_transect_Mersin.png",plots_aligned[[1]],dpi=300,units="cm",width=25,height=12)
 ggsave("png/HEAT_transect_Erdemli.png",plots_aligned[[2]],dpi=300,units="cm",width=25,height=12)
 
+plots_aligned_ts <- align_patches(p1_ts, p2_ts)
+
+ggsave("png/HEAT_timeseries_Mersin.png",plots_aligned_ts[[1]],dpi=300,units="cm",width=12,height=25)
+ggsave("png/HEAT_timeseries_Erdemli.png",plots_aligned_ts[[2]],dpi=300,units="cm",width=12,height=25)
+
+p_ts <- p1_ts + p2_ts
+ggsave("png/HEAT_timeseries.png",p_ts,dpi=300,units="cm",width=25,height=25)
