@@ -2,11 +2,11 @@
 
 ### Contents
 
-* [Preprocessing ](### Preprocessing)
-* [Import to R](### Import to R)
-* [Transects](### Transects)
-* [HEAT Method](### HEAT Method)
-* [HEAT Results](### HEAT Results)
+* [Preprocessing ](#preprocessing)
+* [Import to R](#import-to-r)
+* [Transects](#transects)
+* [HEAT Method](#heat-method)
+* [HEAT Results](#heat-results)
 
 ### Preprocessing
 (Outside R)
