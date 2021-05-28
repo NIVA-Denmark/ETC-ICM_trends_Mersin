@@ -27,7 +27,7 @@ The first transect starts at Mersin (TM36 x=381962 y=4075951). The transect is d
 ![Plot of Mersin transect](png/transect_Mersin.png)
 
 #### 2. Erdemli Transect 
-The second transect starts at Erdemli. In ArcGIS, the *buffer* function is used to divide the waters into bands of distance from the coast at 5 km intervals, up to 25 km, giving 5 bands in total, each 5 km wide. The lateral start and end boundaries of the bands perpendicular to the coastline were chosen arbitrarily, intending only to enclose the area with relatively high density of observations close to Erdemli.
+The second transect starts at Erdemli. In ArcGIS, the *buffer* function is used to divide the waters into bands of distance from the coast at 5 km intervals, up to 40 km, giving 8 bands in total, each 5 km wide. The lateral start and end boundaries of the bands perpendicular to the coastline were chosen arbitrarily, intending only to enclose the area with relatively high density of observations close to Erdemli.
 
 
 ![Plot of Erdemli transect](png/transect_Erdemli.png)
