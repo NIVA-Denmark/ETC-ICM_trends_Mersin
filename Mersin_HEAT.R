@@ -22,9 +22,9 @@ sf_stn_TM36 <- get_station_positions(df,as_sf=T)
 
 # xTM36 <- 381962
 # yTM36 <- 4075951
-shape <- st_read(dsn="gis",layer="erdemli_coast_transect2_5km_20km_v2")
+shape <- st_read(dsn="gis",layer="erdemli_coast_transect3_10km_20km")
 
-grid_res <- 5000
+grid_res <- 10000
 
 sf_stn_transect <- st_intersection(sf_stn_TM36,shape)
 df_stn_TM36_transect_Erdemli <- sf_stn_transect %>%
@@ -49,8 +49,8 @@ df_trans_Erdemli <- df_trans_Erdemli %>%
 xTM36 <- 381962
 yTM36 <- 4075951
 
-grid_res <- 5000 # transect grid resolution (m)
-grid_cells <- 10 # no of grid cells in transect
+grid_res <- 10000 # transect grid resolution (m)
+grid_cells <- 5 # no of grid cells in transect
 
 df_stn_TM36_transect_Mersin <- df_stn_TM36 %>%
   filter(x>=xTM36-(grid_res/2)) %>%
@@ -154,7 +154,7 @@ for(i in 1:length(list_trans)){
   ERmax<- c(5,6,7,8,9,10,15,20,30,40,50)
   ERmax<- ERmax[ERmax>max(df_HEAT_plot$ER,na.rm=T)][1]
   PlotMax[[i]] <- ERmax
-  
+   
   df_HEAT_plot <-df_HEAT_plot %>%
     mutate(RibbonYear = Year) %>%
     mutate(RibbonYear=ifelse(RibbonYear==max(Year),2030,RibbonYear)) %>%
@@ -173,7 +173,7 @@ for(i in 1:length(list_trans)){
     geom_ribbon(aes(ymin=ER05,ymax=ER10,x=RibbonYear),fill="#00d600",alpha=alpha_bands)+
     geom_ribbon(aes(ymin=ER10,ymax=ER15,x=RibbonYear),fill="#ffff00",alpha=alpha_bands)+
     geom_ribbon(aes(ymin=ER15,ymax=ER20,x=RibbonYear),fill="#ff8c2b",alpha=alpha_bands)+
-    geom_ribbon(aes(ymin=ER20,ymax=ERmaxX,x=RibbonYear),fill="#ff0000",alpha=alpha_bands)+
+    geom_ribbon(aes(ymin=ER20,ymax=ERmax,x=RibbonYear),fill="#ff0000",alpha=alpha_bands)+
     geom_line(aes(x=Year,y=ER),size=1) +
     geom_point(aes(x=Year,y=ER),size=1) +
     theme_ipsum() +

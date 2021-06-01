@@ -45,8 +45,8 @@ world_clip_TM36_f <- fortify(world_clip_TM36)
 xTM36 <- 381962 
 yTM36 <- 4075951
 
-grid_res <- 5000 # transect grid resolution (m)
-grid_cells <- 10 # no of grid cells in transect
+grid_res <- 10000 # transect grid resolution (m)
+grid_cells <- 5 # no of grid cells in transect
 
 # create sequences of values defining the grid
 xvalues_TM36 <- seq(xTM36-(grid_res/2), xTM36+(grid_res/2),by=grid_res)
@@ -77,20 +77,15 @@ p1
 # ----- Plot the Erdemli transect -----------------------------------------------------------------
 
 # Read the shape file containing the five areas for grouping the stations
-shape <- st_read(dsn="gis",layer="erdemli_coast_transect2_5km_20km")
+shape <- st_read(dsn="gis",layer="erdemli_coast_transect3_10km_20km")
 plot(shape) 
 
-
-df_stn_select <- df_stn_TM36 %>%
-  filter(str_detect(Station,"ETS_500")) %>%
-  mutate(Dist=30000,DistRnd=25000)
 
 p2<-ggplot() +
   geom_polygon(data = world_clip_TM36_f,
                aes(x = long, y = lat, group = group),
                fill = "#CCCCCC", colour = "#AAAAAA", alpha=0.4) +  #"black"
   geom_point(data=df_stn_TM36,aes(x=x,y=y)) +
-  geom_point(data=df_stn_select,aes(x=x,y=y),colour = "#FF0000") +
   geom_sf(data=shape,fill = NA, colour = "#FF0000", alpha=0.8) +
   ylab("") + xlab("TUREF_TM36 [EPSG:5256]") +
   coord_sf(xlim=c(200000,450000),ylim=c(3945000,4105000), expand=FALSE, crs=st_crs(5256) ) +
