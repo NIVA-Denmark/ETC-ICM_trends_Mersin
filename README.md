@@ -45,7 +45,9 @@ NO3NO2 [µM] | Jan-Mar | 0.71 | +ve
 Chla [µM] | Apr-May | 1.00 | +ve
 SD [m]  | Apr-Sep | 9.00 | -ve
 
-[Tugrul et al. (2018)](https://link.springer.com/article/10.1007%2Fs11356-018-2529-6)
+Target values are obtained from the Turkish National Water Quality Directive (https://www.resmigazete.gov.tr/eskiler/2016/08/20160810-9.htm) 
+
+The average values for each parameter are calculated over the same months of the year as used by [Tugrul et al. (2018)](https://link.springer.com/article/10.1007%2Fs11356-018-2529-6)
 
 For each profile at a particular position on a particular date, we take the maximum value of chl or nutrient concentration at depths of 10 m or less. For example, if there was a Chl *a* measurement at 0 m and also one at 5 m, then we take the greatest of the two values. 
 
